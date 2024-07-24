@@ -175,7 +175,7 @@ body {
 }
 
 .newPostForm input[type='text'], 
-.newPostForm textarea {
+.newPostForm textarea , .edit-input ,.edit-input-s {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -186,7 +186,7 @@ body {
   outline: none;
 }
 
-.newPostForm textarea {
+.newPostForm textarea,.edit-input-s {
   height: 100px;
 }
 
@@ -257,7 +257,7 @@ body {
     margin-left: 0.5rem;
   }
 
-  .newPostForm textarea {
+  .newPostForm textarea .edit-input-s{
     height: 300px;
   }
 }

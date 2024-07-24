@@ -6,7 +6,7 @@ import NewPost from "./components/NewPost";
 import PostPage from "./components/PostPage";
 import About from "./components/About";
 import Missing from "./components/Missing";
-import { Routes, useNavigate, Route } from "react-router-dom";
+import { Routes, useNavigate, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
@@ -63,9 +63,28 @@ function App() {
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
     const datetime = format(new Date(), "MMMM dd, yyyy pp");
     const newPost = { id, title: postTitle, datetime, body: postBody };
+    setPosts([newPost, ...posts])
+    setPostBody("")
+    setPostTitle("")
+    navigate("/")
   };
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    const remainedPosts = posts.filter((posts)=>{
+      if ( posts.id != id)
+        return true
+
+    })
+    setPosts(remainedPosts)
+    navigate("/")
+  };
+  
+  const handleUpdate = (id, newTitle, newBody) => {
+    const updatedPosts = posts.map(post =>
+      post.id === id ? { ...post, title: newTitle, body: newBody } : post
+    );
+    setPosts(updatedPosts);
+  };
 
   return (
     <div className='App'>
@@ -85,7 +104,7 @@ function App() {
             />
           }
         />
-        <Route path='/post/:id' element={<PostPage posts={posts} />} />
+        <Route path='/post/:id' element={<PostPage posts={posts} handleDelete={handleDelete} setPost={handleUpdate}/>} />
         <Route path='/about' element={<About />} />
         <Route path='*' element={<Missing />} />
       </Routes>
