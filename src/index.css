@@ -257,12 +257,13 @@ body {
     margin-left: 0.5rem;
   }
 
-  .newPostForm textarea .edit-input-s{
+  .newPostForm textarea , .edit-input-s{
     height: 300px;
   }
 }
 
 @media only screen and (min-width: 992px) {
+ 
 
   .Header svg {
     font-size: 3rem;
