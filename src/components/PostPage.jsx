@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-const PostPage = ({ posts, handleDelete, setPost}) => {
+const PostPage = ({ posts, handleDelete, setPost, deleting}) => {
   const { id } = useParams();
   const post = posts.find((post) => post.id.toString() === id);
   const [edit, setEdit] = useState(false);
@@ -42,7 +42,7 @@ const PostPage = ({ posts, handleDelete, setPost}) => {
                 <p className="postBody">{post.body}</p>
               </div>
             )}
-            <button onClick={() => handleDelete(post.id)}>Delete Post</button>
+            <button disabled={deleting} onClick={() => handleDelete(post.id)}>{deleting?<p>Processing...</p>:<p>Delete Post</p>}</button>
             <button
               onClick={() => {
                 if (edit) {

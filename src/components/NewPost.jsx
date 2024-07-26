@@ -1,5 +1,5 @@
 const NewPost = ({
-    handleSubmit, postTitle, setPostTitle, postBody, setPostBody
+    handleSubmit, postTitle, setPostTitle, postBody, setPostBody,creating
 }) => {
     return (
         <main className="NewPost">
@@ -20,7 +20,7 @@ const NewPost = ({
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button disabled={creating} style={{backgroundColor:creating && "gray"}} type="submit">{creating? <p>Processing...</p>:<p>Submit</p>}</button>
             </form>
         </main>
     )
